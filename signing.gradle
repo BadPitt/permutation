@@ -1,0 +1,10 @@
+
+task signJar(type: Exec, dependsOn: jar) {
+    println "Signing jar " + jar.archivePath
+    executable 'jarsigner'
+    args '-keystore', signing_keystore
+    args '-storepass', signing_password
+    args jar.archivePath
+    args signing_alias
+    args '-verbose'
+}
