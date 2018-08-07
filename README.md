@@ -1,4 +1,5 @@
-## Tool for generating permutations
+## Tool for generating permutations 
+[![Build Status](https://travis-ci.org/BadPitt/permutation.svg?branch=master)](https://travis-ci.org/BadPitt/permutation)
 
 Java implementation of algorithm from Vladimir Kostin's article.\
 Links: [edu.ru](http://window.edu.ru/resource/334/24334/files/2003_2_84.pdf), [cyberleninka.ru](https://cyberleninka.ru/article/n/generatsiya-perestanovok).
