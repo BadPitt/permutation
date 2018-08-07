@@ -1,0 +1,9 @@
+language: java
+addons:
+  sonarcloud:
+    organization: "badpitt-github"
+    token:
+      secure: "WMy51lJ4VBLFt3/XRH0fETtSeucC4giJjBySS5uSDRqmzYVEbAKU823I6cWnCVp/Z6LYLdJRCyRI1yLNPWRQBUcz1m2w0rH16G4eeK/VrfHnbidp5e31stiI9bE3i+8WzL6e0ceLUPNieLBfWmcFuqgHVDa6PmZQS7NXnhKoDlO/gKlfx7gmA7pmLX7R3lraD1vW0hHWs+PFfvu4cRb0mo1RODF8ZAMRRhU3Z2r2oCcZk+HybeB2vydXEpKAmSeofTdWE4QTTbJITPdgv+6Xf0jbbRmnxEfBcKbYFmuj3yPFcf5r+GieNaYr0CRSYYrF29Q3cPihjmQAUI+qRZ3FD1oVtgN57l9Aw4rrARGTmXuhkvHMVxO6shmrI7YGT/UfG2RzvZl63p3dNbiL0/9qLbJxEWmX1c4B10HWgrsheEyEjP8AfRXlXTNyxruH1zuZaANdzTwx86gr+/keT74WusbcQWryAdDGetL65MC8cDVfXS85ibAWjWJU7SwQmLkNHnJyxvPN8jkccQz8rlC0usXBFqRVKv3YmZL+2xgJEZIbijdItRE7G6sA1mMek3BVTtAkyFQQdU9Jt1uSY8CEIH729p9ViKngNBWwo4DGndlTIxQrVNiXa6cI1yv1/QZEKO8T8cRG7WlxrV8SKb4MGdV3MRnOrk/vB7vG1HzgYSs="
+script:
+  # other script steps might be done before running the actual analysis
+  - sonar-scanner

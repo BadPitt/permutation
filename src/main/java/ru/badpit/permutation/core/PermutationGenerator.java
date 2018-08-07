@@ -14,20 +14,17 @@ import java.util.*;
  */
 public class PermutationGenerator<T extends Comparable<T>> implements Generator<Permutation<T>> {
 
-    private final Comparator<T> defaultComparator = new Comparator<T>() {
-        @Override
-        public int compare(T o1, T o2) {
-            if (o1 == null && o2 == null) {
-                return 0;
-            }
-            if (o1 == null) {
-                return -1;
-            }
-            if (o2 == null) {
-                return 1;
-            }
-            return o1.compareTo(o2);
+    private final Comparator<T> defaultComparator = (o1, o2) -> {
+        if (o1 == null && o2 == null) {
+            return 0;
         }
+        if (o1 == null) {
+            return -1;
+        }
+        if (o2 == null) {
+            return 1;
+        }
+        return o1.compareTo(o2);
     };
 
     private Permutation<T> input;
@@ -192,6 +189,9 @@ public class PermutationGenerator<T extends Comparable<T>> implements Generator<
 
         @Override
         public Permutation<T> next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
             List<T> value = new ArrayList<>(input.getValue());
             int tailsIndex = findTailsIndex(value, comparator);
             if (tailsIndex == 0 || isFirst) {
@@ -206,7 +206,7 @@ public class PermutationGenerator<T extends Comparable<T>> implements Generator<
 
         @Override
         public boolean hasNext() {
-            return !(findTailsIndex(input.getValue(), comparator) == 0);
+            return findTailsIndex(input.getValue(), comparator) != 0;
         }
     }
 }

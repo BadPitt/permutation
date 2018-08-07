@@ -13,34 +13,26 @@ import static java.nio.file.StandardOpenOption.CREATE;
  * BadPit@211.ru
  * on 6/10/18.
  */
-public class OutputChannels {
-    final static OutputChannel CONSOLE =
-            new OutputChannel() {
+public final class OutputChannels {
+    private OutputChannels() {
+    }
+
+    static final OutputChannel CONSOLE = System.out::print;
+    static final Function<String, OutputChannel> FILE =
+            s -> new OutputChannel() {
+                String filename = s;
+
                 @Override
                 public void write(String data) {
-                    System.out.print(data);
-                }
-            };
-    final static Function<String, OutputChannel> FILE =
-            new Function<String, OutputChannel>() {
-                @Override
-                public OutputChannel apply(String s) {
-                    return new OutputChannel() {
-                        String filename = s;
-
-                        @Override
-                        public void write(String data) {
-                            try {
-                                Files.write(
-                                        Paths.get(filename),
-                                        data.getBytes(),
-                                        CREATE, APPEND
-                                );
-                            } catch (IOException e) {
-                                throw new ApplicationException(e.getMessage());
-                            }
-                        }
-                    };
+                    try {
+                        Files.write(
+                                Paths.get(filename),
+                                data.getBytes(),
+                                CREATE, APPEND
+                        );
+                    } catch (IOException e) {
+                        throw new ApplicationException(e.getMessage());
+                    }
                 }
             };
 }

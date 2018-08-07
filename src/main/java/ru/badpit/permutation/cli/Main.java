@@ -46,11 +46,11 @@ public class Main {
                         )
                 );
             }
+        } catch (InputException e) {
+            String message = e.getAppMessage().replaceAll("%key%", e.getInput());
+            System.err.println("Error: " + message);
         } catch (ApplicationException e) {
             String message = e.getAppMessage();
-            if (e instanceof InputException) {
-                message = message.replaceAll("%key%", ((InputException)e).getInput());
-            }
             System.err.println("Error: " + message);
         }
     }

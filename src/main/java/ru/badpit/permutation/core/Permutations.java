@@ -8,31 +8,30 @@ import java.util.*;
  *         on 30.11.17.
  */
 public final class Permutations {
+    private Permutations() {
+    }
 
-    public static <Type> Permutation<Type> createFromList(List<Type> value) {
+    public static <T> Permutation<T> createFromList(List<T> value) {
         return new ObjectPermutation<>(new ArrayList<>(value));
     }
 
-    public static <Type> Permutation<Type> createFromArray(Type[] value) {
+    public static <T> Permutation<T> createFromArray(T[] value) {
         return new ObjectPermutation<>(Arrays.asList(value));
     }
 
-    public static <Type> Permutation<Type> copy(Permutation<Type> value) {
+    public static <T> Permutation<T> copy(Permutation<T> value) {
         return createFromList(value.getValue());
     }
 
-    public static <Type extends Comparable<Type>> Permutation<Type> createFirstPermutation(Permutation<Type> value) {
-        List<Type> dest = new ArrayList<>(value.getValue());
+    public static <T extends Comparable<T>> Permutation<T> createFirstPermutation(Permutation<T> value) {
+        List<T> dest = new ArrayList<>(value.getValue());
         Collections.sort(dest);
         return createFromList(dest);
     }
 
-    public static <Type> Permutation<Type> createFirstPermutation(Permutation<Type> value, Comparator<Type> comparator) {
-        List<Type> dest = new ArrayList<>(value.getValue());
+    public static <T> Permutation<T> createFirstPermutation(Permutation<T> value, Comparator<T> comparator) {
+        List<T> dest = new ArrayList<>(value.getValue());
         dest.sort(comparator);
         return createFromList(dest);
-    }
-
-    private Permutations() {
     }
 }

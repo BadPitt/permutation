@@ -157,7 +157,7 @@ public class PermutationGeneratorTests {
         List<Permutation<Integer>> permutations =
                 new PermutationGenerator<>(array).generateAll();
         System.out.println(Arrays.toString(permutations.toArray()));
-        assertEquals(permutations.size(), 4);
+        assertEquals(4, permutations.size());
     }
 
     @Test

@@ -6,7 +6,8 @@ package ru.badpit.permutation.cli;
  * on 6/10/18.
  */
 public class ApplicationException extends RuntimeException {
-    private String appMessage;
+    private final String appMessage;
+
     public ApplicationException(String message) {
         super(message);
         this.appMessage = message;
