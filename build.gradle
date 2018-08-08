@@ -30,8 +30,9 @@ jar {
     }
 }
 
-//apply from: './signing.gradle'
-//build.dependsOn('signJar')
+apply from: './signing.gradle'
+project.tasks["build"].dependsOn("test")
+project.tasks["build"].dependsOn("signJar")
 project.tasks["sonarqube"].dependsOn "test"
 
 dependencies {

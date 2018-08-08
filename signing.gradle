@@ -1,10 +1,27 @@
+def pass, alias, url
+if (!project.hasProperty('signing_password')) {
+    pass = "${System.env.signing_password}"
+} else {
+    pass = signing_password
+}
+if (!project.hasProperty('signing_alias')) {
+    alias = "${System.env.signing_alias}"
+} else {
+    alias = signing_alias
+}
+if (!project.hasProperty('tsa_url')) {
+    url = "${System.env.tsa_url}"
+} else {
+    url = tsa_url
+}
 
 task signJar(type: Exec, dependsOn: jar) {
     println "Signing jar " + jar.archivePath
     executable 'jarsigner'
-    args '-keystore', signing_keystore
-    args '-storepass', signing_password
+    args '-keystore', 'keystore'
+    args '-storepass', pass
     args jar.archivePath
-    args signing_alias
+    args alias
+    args '-tsa', url
     args '-verbose'
 }
